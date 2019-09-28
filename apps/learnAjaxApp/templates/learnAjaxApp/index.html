@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'learnAjaxApp/js/script.js' %}"></script>
     <title>Document</title>
 </head>
 <body>
-
+    <div id="replace">
     {% for note in all_notes %}
-        <p>{{note.title}}</p>
-    {% endfor %}
-    <form action="new" method="POST">
+        <div class="notes">
+            <p>{{note.title}}</p>
+        </div>
+    {% endfor %}    
+    </div>
+
+    <form action="/notes" method="POST">
         {% csrf_token %}
         <input type="text" name="note-title">
         <button>Add</button>
     </form>
+
 </body>
 </html>
